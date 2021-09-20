@@ -12,45 +12,59 @@ export function App() {
   const [contacts, setContacts] = useState([])
   const [filter, setFilter] = useState('')
 
+  const formSubmitHandler = (data) => {
+    setContacts((prevState) => ({...prevState, ...data}))
+  };
+
   // const formSubmitHandler = data => {
-  //   useEffect(prevState => {
-  //     const found = prevState.contacts.find((contact) => contact.name === data.name)
+  //   setContacts((prevState) => {
+  //     const found = prevState.contacts.find((contact) => contact.name === data.name);
+     
   //     if (!found) {
-  //       setContacts(data, ...prevState)
   //       return {
-  //         ...prevState, contacts
-  //       }
-  //     } toast.warn(`${data.name} is already in contacts`);
-  //   }, [prevState])
+  //         ...prevState, data
+  //       };
+  //     }
+  //     toast.warn(`${data.name} is already in contacts`);
+  //   });
   // }
+    
+    // window.localStorage.setItem('contacts', JSON.stringify(contacts));
 
-  const formSubmitHandler = data => {
-    setContacts(state => state, data)
-  }
-  const findByName = e => {
-    setFilter(e.currentTarget.value);
-  };
+    // useEffect(() => {
+    //     return setContacts(JSON.parse(window.localStorage.getItem('contact')))
+    //   }, [contacts])
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-  };
+    const findByName = e => {
+      setFilter(e.currentTarget.value);
+    };
 
-  const deleteContact = contactId => {
-    setContacts(prevState => prevState.filter((contact) => (contact.id !== contactId) ))
-  };
+    const getVisibleContacts = () => {
+      const normalizedFilter = filter.toLowerCase();
+      return contacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalizedFilter)
+      );
+    };
+
+    const deleteContact = contactId => {
+      setContacts(prevState => (prevState.filter(contact => (contact.id !== contactId))))
+    };
 
     return (
       <MainContainer>
-          <h1>Phonebook</h1>
-          <ContactForm onSubmit={formSubmitHandler}/>
-          <Filter value={filter} onChange={findByName}/>
-          <ContactList
-            contacts={getVisibleContacts}
-          onDeleteContact={deleteContact} />
-        <ToastContainer autoClose={3000}/>
+        <h1>Phonebook</h1>
+        <ContactForm
+          onSubmit={formSubmitHandler}
+        />
+        <Filter
+          value={filter}
+          onChange={findByName}
+        />
+        <ContactList
+          contacts={getVisibleContacts}
+          onDeleteContact={deleteContact}
+        />
+        <ToastContainer autoClose={3000} />
       </MainContainer>
     )
-}
+  }

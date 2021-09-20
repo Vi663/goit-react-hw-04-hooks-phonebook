@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import s from './ContactForm.module.css';
 
 export function ContactForm ({onSubmit}) {
   
-  const [name, setName] = useLocalStorage('name', '');
-  const [number, setNumber] = useLocalStorage('number', '');
-  const [contact, setContact] = useState({})
+  const initialState = {
+    name: "",
+    number: "",
+  };
+  
+  const [state, setState] = useState(initialState);
+  const { name, number } = state;
 
   const handleChange = event => {
     const { name, value } = event.target;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
+    setState((prevState) => ({
+      ...prevState, [name]: value
+    }))
   };
 
   const nameInputId = uuidv4();
@@ -31,15 +24,14 @@ export function ContactForm ({onSubmit}) {
 
 
   const handleSubmit = e => {
-    e.preventDefault();
-    setContact({id: uuidv4(), name: name, number: number})
-    onSubmit(contact);
-    resetForm();
+    e.preventDefault()
+    // window.localStorage.setItem('contact', JSON.stringify(contact))
+    onSubmit(state)
+    resetForm()
   }
 
   const resetForm = () => {
-    setName('');
-    setNumber('');
+    setState({ ...initialState });
   }
 
   return (
