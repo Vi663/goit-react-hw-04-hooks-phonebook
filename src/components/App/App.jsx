@@ -15,16 +15,12 @@ export function App() {
   })
   const [filter, setFilter] = useState('')
 
-  // const formSubmitHandler = (data) => {
-  //   setContacts((prevState) => ([...prevState, {...data}]))
-  // };
 
   const formSubmitHandler = (data) => {
     const found = contacts.find((contact) => contact.name === data.name || contact.number === data.number);
      
     if (!found) {
       setContacts((prevState) => ([...prevState, { id: uuidv4(), ...data }]))
-      // window.localStorage.setItem('contacts', JSON.stringify(contacts))
     } else {
       toast.error(`This name or number is already in contacts`)
     }

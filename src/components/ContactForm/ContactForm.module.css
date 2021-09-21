@@ -7,10 +7,22 @@
   height: 20px;
   font-family: Roboto;
   font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
   letter-spacing: 0.03em;
   margin: 0 15px;
   border-radius: 5px;
   border: 1px #e46c6cea solid;
+}
+
+.ContactLabel {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0.03em;
 }
 
 .ContactBtn {

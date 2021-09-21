@@ -25,7 +25,6 @@ export function ContactForm ({onSubmit}) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    // window.localStorage.setItem('contact', JSON.stringify(contact))
     onSubmit(contact)
     resetContact()
   }
@@ -36,7 +35,10 @@ export function ContactForm ({onSubmit}) {
 
   return (
     <form className={s.ContactForm} autoComplete="on" onSubmit={handleSubmit}>
-      <label htmlFor={nameInputId}>Name</label>
+      <label
+        className={s.ContactLabel}
+        htmlFor={nameInputId}
+      >Name</label>
       <input
         className={s.ContactInput}
         type="text"
@@ -49,7 +51,10 @@ export function ContactForm ({onSubmit}) {
         required
       />
         
-      <label htmlFor={numberInputId}>Phone number</label>
+      <label
+        htmlFor={numberInputId}
+        className={s.ContactLabel}
+      >Phone number</label>
       <input
         className={s.ContactInput}
         type="tel"
