@@ -4,17 +4,17 @@ import s from './ContactForm.module.css';
 
 export function ContactForm ({onSubmit}) {
   
-  const initialState = {
+  const initialContact = {
     name: "",
     number: "",
   };
   
-  const [state, setState] = useState(initialState);
-  const { name, number } = state;
+  const [contact, setContact] = useState (initialContact);
+  const { name, number } = contact;
 
   const handleChange = event => {
     const { name, value } = event.target;
-    setState((prevState) => ({
+    setContact((prevState) => ({
       ...prevState, [name]: value
     }))
   };
@@ -26,12 +26,12 @@ export function ContactForm ({onSubmit}) {
   const handleSubmit = e => {
     e.preventDefault()
     // window.localStorage.setItem('contact', JSON.stringify(contact))
-    onSubmit(state)
-    resetForm()
+    onSubmit({id: uuidv4(), ...contact})
+    resetContact()
   }
 
-  const resetForm = () => {
-    setState({ ...initialState });
+  const resetContact = () => {
+    setContact({ ...initialContact });
   }
 
   return (
