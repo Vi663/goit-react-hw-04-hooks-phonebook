@@ -5,7 +5,7 @@ import s from './ContactList.module.css'
 export function ContactList({ contacts, onDeleteContact }) {
   return (
     contacts.length === 0 ?
-      <p className={s.ContactItem}>There are no contacts yet</p>
+      <p className={s.ContactList}>There are no contacts yet</p>
       : <ul className={s.ContactList}>
       {contacts.map(({ id, name, number }) => (
         <li key={id} className={s.ContactItem}>

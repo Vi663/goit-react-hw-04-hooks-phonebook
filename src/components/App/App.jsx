@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 import 'react-toastify/dist/ReactToastify.css';
 import { MainContainer } from "../MainContainer/MainContainer";
 import { ContactForm } from "../ContactForm/ContactForm";
@@ -9,7 +10,9 @@ import { ContactList } from "../ContactList/ContactList";
 
 export function App() {
   
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('contacts'))
+  })
   const [filter, setFilter] = useState('')
 
   // const formSubmitHandler = (data) => {
@@ -17,21 +20,22 @@ export function App() {
   // };
 
   const formSubmitHandler = (data) => {
-    const found = contacts.find((contact) => contact.name === data.name);
+    const found = contacts.find((contact) => contact.name === data.name || contact.number === data.number);
      
     if (!found) {
-      setContacts((prevState) => ([...prevState, { ...data }]))
+      setContacts((prevState) => ([...prevState, { id: uuidv4(), ...data }]))
+      // window.localStorage.setItem('contacts', JSON.stringify(contacts))
     } else {
-      toast.warn(`${data.name} is already in contacts`)
+      toast.error(`This name or number is already in contacts`)
     }
   }
   useEffect(() => {
-    return window.localStorage.setItem('contacts', JSON.stringify(contacts))
+    window.localStorage.setItem('contacts', JSON.stringify(contacts))
   }, [contacts])
 
-    useEffect(() => {
-        return setContacts(JSON.parse(window.localStorage.getItem('contacts')))
-      }, [])
+  useEffect(() => {
+    setContacts(JSON.parse(window.localStorage.getItem('contacts')))
+  }, [])
 
   const findByName = e => {
     setFilter(e.currentTarget.value);
@@ -62,7 +66,7 @@ export function App() {
         contacts={getVisibleContacts()}
         onDeleteContact={deleteContact}
       />
-      <ToastContainer autoClose={3000} />
+      <ToastContainer theme="colored" autoClose={3000} />
     </MainContainer>
   )
 }

@@ -26,7 +26,7 @@ export function ContactForm ({onSubmit}) {
   const handleSubmit = e => {
     e.preventDefault()
     // window.localStorage.setItem('contact', JSON.stringify(contact))
-    onSubmit({id: uuidv4(), ...contact})
+    onSubmit(contact)
     resetContact()
   }
 
