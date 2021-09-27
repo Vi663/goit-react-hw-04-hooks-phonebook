@@ -1,6 +1,6 @@
-.ContactList {
+.contactList {
   list-style: none;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -10,14 +10,14 @@
   padding-top: 20px;
 }
 
-.ContactItem {
+.contactItem {
   display: flex;
   width: 350px;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-.ContactBtn {
-  font-family: Roboto;
+.contactBtn {
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   width: 60px;
@@ -27,4 +27,10 @@
   border-radius: 5px;
   background-color: #e46c6cea;
   color: rgb(255, 255, 255);
+}
+
+.contactItemName,
+.contactItemNumber {
+  width: 200px;
+  padding-right: 20px;
 }

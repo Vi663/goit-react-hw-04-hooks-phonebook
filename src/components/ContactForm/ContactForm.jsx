@@ -34,13 +34,13 @@ export function ContactForm ({onSubmit}) {
   }
 
   return (
-    <form className={s.ContactForm} autoComplete="on" onSubmit={handleSubmit}>
+    <form className={s.contactForm} autoComplete="on" onSubmit={handleSubmit}>
       <label
-        className={s.ContactLabel}
+        className={s.contactLabel}
         htmlFor={nameInputId}
       >Name</label>
       <input
-        className={s.ContactInput}
+        className={s.contactInput}
         type="text"
         name="name"
         value={name}
@@ -53,10 +53,10 @@ export function ContactForm ({onSubmit}) {
         
       <label
         htmlFor={numberInputId}
-        className={s.ContactLabel}
+        className={s.contactLabel}
       >Phone number</label>
       <input
-        className={s.ContactInput}
+        className={s.contactInput}
         type="tel"
         name="number"
         value={number}
@@ -66,7 +66,7 @@ export function ContactForm ({onSubmit}) {
         title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
         required
       />
-      <button className={s.ContactBtn}
+      <button className={s.contactBtn}
         type="submit"
         name="submit">Add Contact
       </button>

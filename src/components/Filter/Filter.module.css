@@ -1,16 +1,16 @@
-.FilterLabel {
+.filterLabel {
   padding: 20px;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: 0.03em;
   
 }
 
-.FilterInput {
+.filterInput {
   width: 150px;
   height: 20px;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   letter-spacing: 0.03em;
   margin-left: 15px;

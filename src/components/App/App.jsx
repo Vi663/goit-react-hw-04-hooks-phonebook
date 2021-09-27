@@ -1,36 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
-import 'react-toastify/dist/ReactToastify.css';
 import { MainContainer } from "../MainContainer/MainContainer";
 import { ContactForm } from "../ContactForm/ContactForm";
 import { Filter } from "../Filter/Filter";
 import { ContactList } from "../ContactList/ContactList";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
-  
-  const [contacts, setContacts] = useState(() => {
+  const getLocalStorageItem = () => {
     return JSON.parse(window.localStorage.getItem('contacts'))
-  })
+  }
+  const [contacts, setContacts] = useState(getLocalStorageItem())
   const [filter, setFilter] = useState('')
 
-
-  const formSubmitHandler = (data) => {
-    const found = contacts.find((contact) => contact.name === data.name || contact.number === data.number);
+  const formSubmitHandler = ({name, number}) => {
+    const found = contacts.find((contact) => contact.name === name || contact.number === number);
      
     if (!found) {
-      setContacts((prevState) => ([...prevState, { id: uuidv4(), ...data }]))
+      setContacts((prevState) => ([...prevState, { id: uuidv4(), name, number }]))
     } else {
       toast.error(`This name or number is already in contacts`)
     }
   }
+  
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts))
   }, [contacts])
 
   useEffect(() => {
-    setContacts(JSON.parse(window.localStorage.getItem('contacts')))
+    setContacts(getLocalStorageItem())
   }, [])
 
   const findByName = e => {

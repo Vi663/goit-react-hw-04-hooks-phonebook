@@ -1,11 +1,11 @@
-.ContactForm {
+.contactForm {
   padding: 20px;
 }
 
-.ContactInput {
+.contactInput {
   width: 150px;
   height: 20px;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -16,8 +16,8 @@
   border: 1px #e46c6cea solid;
 }
 
-.ContactLabel {
-  font-family: Roboto;
+.contactLabel {
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -25,8 +25,8 @@
   letter-spacing: 0.03em;
 }
 
-.ContactBtn {
-  font-family: Roboto;
+.contactBtn {
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   width: 120px;
